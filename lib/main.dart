@@ -31,6 +31,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool _isimage = true;
+
+  void _toggleImage() {
+    setState(() {
+      _isimage = !_isimage;
+    });
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -49,6 +56,15 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Image.asset(
+                _isimage ? 'images/image1.png' : 'images/image2.png',
+                width: 200,
+                height: 400,
+              ),
+              ElevatedButton(
+                onPressed: _toggleImage,
+                child: Text("Toggle Image"),
+              ),
               const Text(
                 'You have pushed the button this many times:',
               ),
