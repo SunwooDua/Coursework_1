@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage>
 
     _controller = AnimationController(
       vsync: this, // the SingleTickerProviderStateMixin
-      duration: const Duration(microseconds: 500),
+      duration: const Duration(milliseconds: 500),
     );
 
     _curvedAnimation = CurvedAnimation(
@@ -76,10 +76,13 @@ class _MyHomePageState extends State<MyHomePage>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset(
-                _isimage ? 'images/image1.png' : 'images/image2.png',
-                width: 200,
-                height: 400,
+              FadeTransition(
+                opacity: _curvedAnimation,
+                child: Image.asset(
+                  _isimage ? 'images/image1.png' : 'images/image2.png',
+                  width: 200,
+                  height: 400,
+                ),
               ),
               ElevatedButton(
                 onPressed: _toggleImage,
