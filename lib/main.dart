@@ -29,11 +29,24 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   int _counter = 0;
   bool _isimage = true;
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this, // the SingleTickerProviderStateMixin
+      duration: const Duration(microseconds: 500),
+    );
+  }
 
   void _toggleImage() {
+    _controller.reset();
+    _controller.forward();
     setState(() {
       _isimage = !_isimage;
     });
